@@ -6,7 +6,16 @@ import { getInputDevice } from './deviceSlice';
 
 const Device = () => {
   const dispatch = useDispatch();
-  const { inputDevice1, inputDevice2 } = useSelector((state) => state.device);
+  const {
+    device1ID,
+    device1Name,
+    device1Manufacturer,
+    device1State,
+    device2ID,
+    device2Name,
+    device2Manufacturer,
+    device2State,
+  } = useSelector((state) => state.device);
 
   useEffect(() => {
     dispatch(getInputDevice());
@@ -28,19 +37,19 @@ const Device = () => {
           <TableBody>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
-                {inputDevice1.id}
+                {device1ID}
               </TableCell>
-              <TableCell align="left">{inputDevice1.manufacturer}</TableCell>
-              <TableCell align="left">{inputDevice1.name}</TableCell>
-              <TableCell align="left">{inputDevice1.state}</TableCell>
+              <TableCell align="left">{device1Manufacturer}</TableCell>
+              <TableCell align="left">{device1Name}</TableCell>
+              <TableCell align="left">{device1State}</TableCell>
             </TableRow>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
-                {inputDevice2.id}
+                {device2ID}
               </TableCell>
-              <TableCell align="left">{inputDevice2.manufacturer}</TableCell>
-              <TableCell align="left">{inputDevice2.name}</TableCell>
-              <TableCell align="left">{inputDevice2.state}</TableCell>
+              <TableCell align="left">{device2Manufacturer}</TableCell>
+              <TableCell align="left">{device2Name}</TableCell>
+              <TableCell align="left">{device2State}</TableCell>
             </TableRow>
           </TableBody>
         </Table>

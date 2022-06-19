@@ -7,30 +7,37 @@ const getInputDevice = createAsyncThunk('device/getInputDevice', async () => {
 });
 
 const initialState = {
-  inputDevice1: {},
-  inputDevice2: {},
+  device1ID: '',
+  device1Name: '',
+  device1Manufacturer: '',
+  device1State: '',
+  device2ID: '',
+  device2Name: '',
+  device2Manufacturer: '',
+  device2State: '',
 };
 
 const deviceSlice = createSlice({
   name: 'device',
   initialState,
-  reducers: {
-    setMIDIInput1: (state, action) => {
-      state.inputDevice1 = action.payload;
-    },
-    setMIDIInput2: (state, action) => {
-      state.inputDevice2 = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getInputDevice.fulfilled, (state, action) => {
-      console.log(action.payload);
-      state.inputDevice1 = action.payload[0];
-      state.inputDevice2 = action.payload[1];
+      let device1 = action.payload[0];
+      let device2 = action.payload[1];
+
+      state.device1ID = device1.id;
+      state.device1Name = device1.name;
+      state.device1Manufacturer = device1.manufacturer;
+      state.device1State = device1.state;
+
+      state.device2ID = device2.id;
+      state.device2Name = device2.name;
+      state.device2Manufacturer = device2.manufacturer;
+      state.device2State = device2.state;
     });
   },
 });
 
-// const { setMIDIInput1, setMIDIInput2 } = deviceSlice.actions;
 export { getInputDevice };
 export default deviceSlice.reducer;
